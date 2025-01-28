@@ -654,6 +654,6 @@ class __TwigTemplate_ab10db691041e1496f033c5fa52ce8c9 extends Template
         }
     }
 </script>
-", "@WebProfiler/Profiler/base_js.html.twig", "/Users/enzosuire/Desktop/PariBasket/Paribasket/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/base_js.html.twig");
+", "@WebProfiler/Profiler/base_js.html.twig", "/Users/enzosuire/Desktop/ECF PariBasket/git/PariBasket/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/base_js.html.twig");
     }
 }

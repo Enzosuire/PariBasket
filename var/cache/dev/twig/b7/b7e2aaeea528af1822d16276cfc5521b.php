@@ -1866,6 +1866,6 @@ class __TwigTemplate_cafb4e9f24696cf83b1a9626c005aafd extends Template
         </tbody>
     </table>
 {% endmacro %}
-", "@Doctrine/Collector/db.html.twig", "/Users/enzosuire/Desktop/PariBasket/Paribasket/vendor/doctrine/doctrine-bundle/templates/Collector/db.html.twig");
+", "@Doctrine/Collector/db.html.twig", "/Users/enzosuire/Desktop/ECF PariBasket/git/PariBasket/vendor/doctrine/doctrine-bundle/templates/Collector/db.html.twig");
     }
 }

@@ -989,6 +989,6 @@ class __TwigTemplate_52a0a6808fbac639fa58f2d5eda9e34a extends Template
         </td>
     </tr>
 {% endmacro %}
-", "@DoctrineMigrations/Collector/migrations.html.twig", "/Users/enzosuire/Desktop/PariBasket/Paribasket/vendor/doctrine/doctrine-migrations-bundle/templates/Collector/migrations.html.twig");
+", "@DoctrineMigrations/Collector/migrations.html.twig", "/Users/enzosuire/Desktop/ECF PariBasket/git/PariBasket/vendor/doctrine/doctrine-migrations-bundle/templates/Collector/migrations.html.twig");
     }
 }

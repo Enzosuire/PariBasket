@@ -175,12 +175,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->Solde;
     }
 
-    public function setSolde(int $Solde): static
+    public function setSolde(?int $Solde): static
     {
         $this->Solde = $Solde;
 
         return $this;
     }
+
 
     /**
      * @return Collection<int, Paris>

@@ -186,6 +186,6 @@ class __TwigTemplate_62a71a97ef7ede5381ea867af73deb8b extends Template
         {%- endfor -%}
     </pre>
 {% endif %}
-", "@Doctrine/Collector/explain.html.twig", "/Users/enzosuire/Desktop/PariBasket/Paribasket/vendor/doctrine/doctrine-bundle/templates/Collector/explain.html.twig");
+", "@Doctrine/Collector/explain.html.twig", "/Users/enzosuire/Desktop/ECF PariBasket/git/PariBasket/vendor/doctrine/doctrine-bundle/templates/Collector/explain.html.twig");
     }
 }
