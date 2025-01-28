@@ -31,7 +31,7 @@ class __TwigTemplate_db81a7385db1039e91270bd46a0230c8 extends Template
 
         $this->blocks = [
             'title' => [$this, 'block_title'],
-            'body' => [$this, 'block_body'],
+            'content' => [$this, 'block_content'],
         ];
     }
 
@@ -87,32 +87,52 @@ class __TwigTemplate_db81a7385db1039e91270bd46a0230c8 extends Template
     /**
      * @return iterable<null|scalar|\Stringable>
      */
-    public function block_body(array $context, array $blocks = []): iterable
+    public function block_content(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
         $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
         // line 6
-        yield "<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+        yield "<!-- Page content-->
+<div class=\"container mt-5\">
+   
 
-<div class=\"example-wrapper\">
-    <h1>Hello ";
-        // line 12
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["controller_name"]) || array_key_exists("controller_name", $context) ? $context["controller_name"] : (function () { throw new RuntimeError('Variable "controller_name" does not exist.', 12, $this->source); })()), "html", null, true);
-        yield "! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/enzosuire/Desktop/PariBasket/Paribasket/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/Users/enzosuire/Desktop/PariBasket/Paribasket/templates/home/index.html.twig</code></li>
-    </ul>
+    <section class=\"mt-4\">
+        <h2 class=\"mb-4\">Matchs à venir</h2>
+        <div class=\"row\">
+            <!-- Card 1 -->
+            <div class=\"col-12 mb-4\">
+                <div class=\"card shadow-sm\">
+                    <div class=\"card-body text-center\">
+                        <h5 class=\"card-title\">Équipe A vs Équipe B</h5>
+                        <p class=\"card-text\">Date du match : 6 septembre 2024</p>
+                        <div class=\"d-flex justify-content-center gap-3\">
+                            <button class=\"btn btn-success\">Parier sur l'equipe A</button>
+                            <button class=\"btn btn-danger\">Parier sur l'equipe B</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class=\"col-12 mb-4\">
+                <div class=\"card shadow-sm\">
+                    <div class=\"card-body text-center\">
+                        <h5 class=\"card-title\">Équipe C vs Équipe D</h5>
+                        <p class=\"card-text\">Date du match : 7 septembre 2024</p>
+                        <div class=\"d-flex justify-content-center gap-3\">
+                            <button class=\"btn btn-success\">Parier sur l'equipe A</button>
+                            <button class=\"btn btn-danger\">Parier sur l'equipe B</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 ";
         
@@ -145,7 +165,7 @@ class __TwigTemplate_db81a7385db1039e91270bd46a0230c8 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  108 => 12,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -154,22 +174,45 @@ class __TwigTemplate_db81a7385db1039e91270bd46a0230c8 extends Template
 
 {% block title %}Hello HomeController!{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block content %}
+<!-- Page content-->
+<div class=\"container mt-5\">
+   
 
-<div class=\"example-wrapper\">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/enzosuire/Desktop/PariBasket/Paribasket/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/Users/enzosuire/Desktop/PariBasket/Paribasket/templates/home/index.html.twig</code></li>
-    </ul>
+    <section class=\"mt-4\">
+        <h2 class=\"mb-4\">Matchs à venir</h2>
+        <div class=\"row\">
+            <!-- Card 1 -->
+            <div class=\"col-12 mb-4\">
+                <div class=\"card shadow-sm\">
+                    <div class=\"card-body text-center\">
+                        <h5 class=\"card-title\">Équipe A vs Équipe B</h5>
+                        <p class=\"card-text\">Date du match : 6 septembre 2024</p>
+                        <div class=\"d-flex justify-content-center gap-3\">
+                            <button class=\"btn btn-success\">Parier sur l'equipe A</button>
+                            <button class=\"btn btn-danger\">Parier sur l'equipe B</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class=\"col-12 mb-4\">
+                <div class=\"card shadow-sm\">
+                    <div class=\"card-body text-center\">
+                        <h5 class=\"card-title\">Équipe C vs Équipe D</h5>
+                        <p class=\"card-text\">Date du match : 7 septembre 2024</p>
+                        <div class=\"d-flex justify-content-center gap-3\">
+                            <button class=\"btn btn-success\">Parier sur l'equipe A</button>
+                            <button class=\"btn btn-danger\">Parier sur l'equipe B</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 {% endblock %}
-", "home/index.html.twig", "/Users/enzosuire/Desktop/PariBasket/Paribasket/templates/home/index.html.twig");
+", "home/index.html.twig", "/Users/enzosuire/Desktop/ECF PariBasket/git/PariBasket/templates/home/index.html.twig");
     }
 }
