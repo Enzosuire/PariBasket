@@ -76,7 +76,7 @@ class __TwigTemplate_d9dca99c3f94092b2de65a232aafd4c3 extends Template
 \t\t";
         // line 23
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 90
+        // line 88
         yield "\t</body>
 </html>
 ";
@@ -209,11 +209,12 @@ class __TwigTemplate_d9dca99c3f94092b2de65a232aafd4c3 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 24
-        yield "\t\t\t<!-- Responsive navbar-->
+        yield "
+\t\t\t<!-- Responsive navbar-->
 \t\t\t<nav class=\"navbar navbar-expand-lg navbar-warning-subtle bg-warning\">
 \t\t\t\t<div class=\"container\">
 \t\t\t\t\t<a class=\"navbar-brand\" href=\"";
-        // line 27
+        // line 28
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_home");
         yield "\">
 \t\t\t\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" widht=\"16\" height=\"16\"><path d=\"M86.6 64l85.2 85.2C194.5 121.7 208 86.4 208 48c0-14.7-2-28.9-5.7-42.4C158.6 15 119 35.5 86.6 64zM64 86.6C35.5 119 15 158.6 5.6 202.3C19.1 206 33.3 208 48 208c38.4 0 73.7-13.5 101.3-36.1L64 86.6zM256 0c-7.3 0-14.6 .3-21.8 .9C238 16 240 31.8 240 48c0 47.3-17.1 90.5-45.4 124L256 233.4 425.4 64C380.2 24.2 320.9 0 256 0zM48 240c-16.2 0-32-2-47.1-5.8C.3 241.4 0 248.7 0 256c0 64.9 24.2 124.2 64 169.4L233.4 256 172 194.6C138.5 222.9 95.3 240 48 240zm463.1 37.8c.6-7.2 .9-14.5 .9-21.8c0-64.9-24.2-124.2-64-169.4L278.6 256 340 317.4c33.4-28.3 76.7-45.4 124-45.4c16.2 0 32 2 47.1 5.8zm-4.7 31.9C492.9 306 478.7 304 464 304c-38.4 0-73.7 13.5-101.3 36.1L448 425.4c28.5-32.3 49.1-71.9 58.4-115.7zM340.1 362.7C317.5 390.3 304 425.6 304 464c0 14.7 2 28.9 5.7 42.4C353.4 497 393 476.5 425.4 448l-85.2-85.2zM317.4 340L256 278.6 86.6 448c45.1 39.8 104.4 64 169.4 64c7.3 0 14.6-.3 21.8-.9C274 496 272 480.2 272 464c0-47.3 17.1-90.5 45.4-124z\"/></svg>
@@ -225,24 +226,25 @@ class __TwigTemplate_d9dca99c3f94092b2de65a232aafd4c3 extends Template
 \t\t\t\t\t\t<ul class=\"navbar-nav ms-auto mb-2 mb-lg-0\">
 \t\t\t\t\t\t\t<li class=\"nav-item\">
 \t\t\t\t\t\t\t\t<a href=\"";
-        // line 36
+        // line 37
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_home");
         yield "\" class=\"nav-link\">Home</a>
 \t\t\t\t\t\t\t</li>
 \t\t\t\t\t\t\t<li class=\"nav-item\">
 \t\t\t\t\t\t\t\t";
-        // line 40
+        // line 41
         yield "\t\t\t\t\t\t\t\t<a href=\"\" class=\"nav-link\">Admin</a>
 \t\t\t\t\t\t\t</li>
 \t\t\t\t\t\t\t<li class=\"nav-item\">
 \t\t\t\t\t\t\t\t";
-        // line 44
+        // line 45
         yield "\t\t\t\t\t\t\t\t<a href=\"\" class=\"nav-link\">Vos Paris</a>
 \t\t\t\t\t\t\t</li>
 \t\t\t\t\t\t\t<li class=\"nav-item\">
-\t\t\t\t\t\t\t\t";
+\t\t\t\t\t\t\t\t<a href=\"";
         // line 48
-        yield "\t\t\t\t\t\t\t\t<a href=\"\" class=\"nav-link\">Connexion</a>
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+        yield "\" class=\"nav-link\">Connexion</a>
 \t\t\t\t\t\t\t</li>
 \t\t\t\t\t\t\t
 \t\t
@@ -250,27 +252,36 @@ class __TwigTemplate_d9dca99c3f94092b2de65a232aafd4c3 extends Template
 \t\t\t\t\t</div>
 \t\t\t\t</div>
 \t\t\t</nav>
-
-\t\t\t<!-- Page header with logo and tagline-->
-\t\t\t<header class=\"py-5 bg-light border-bottom mb-4\">
-\t\t\t\t<div class=\"container\">
-\t\t\t\t\t<div class=\"text-center my-5\">
-\t\t\t\t\t\t<h1 class=\"fw-bolder\">Bienvenue</h1>
-\t\t\t\t\t\t<p class=\"lead mb-0\">Parier, c'est gagner</p>
-\t\t\t\t\t</div>
-\t\t\t\t</div>
-\t\t\t</header>
+             ";
+        // line 56
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 56, $this->source); })()), "user", [], "any", false, false, false, 56)) {
+            // line 57
+            yield "                <div class=\"alert alert-info text-center\">
+                    Vous êtes connecté en tant que <strong>";
+            // line 58
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 58, $this->source); })()), "user", [], "any", false, false, false, 58), "userIdentifier", [], "any", false, false, false, 58), "html", null, true);
+            yield "</strong>, 
+                    <a href=\"";
+            // line 59
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
+            yield "\" class=\"text-decoration-none\">Déconnexion</a>
+                </div>
+            ";
+        }
+        // line 62
+        yield "
+\t\t\t
 \t\t
 \t\t\t<main>
 \t\t\t\t";
-        // line 68
+        // line 66
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 68, $this->source); })()), "flashes", ["success"], "method", false, false, false, 68));
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 66, $this->source); })()), "flashes", ["success"], "method", false, false, false, 66));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 69
+            // line 67
             yield "\t\t\t\t\t<div class=\"alert alert-success\" role=\"alert\">
 \t\t\t\t\t\t";
-            // line 70
+            // line 68
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
             yield "
 \t\t\t\t\t</div>
@@ -279,15 +290,15 @@ class __TwigTemplate_d9dca99c3f94092b2de65a232aafd4c3 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 73
+        // line 71
         yield "\t\t\t\t";
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 73, $this->source); })()), "flashes", ["danger"], "method", false, false, false, 73));
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 71, $this->source); })()), "flashes", ["danger"], "method", false, false, false, 71));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 74
+            // line 72
             yield "\t\t\t\t\t<div class=\"alert alert-danger\" role=\"alert\">
 \t\t\t\t\t\t";
-            // line 75
+            // line 73
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
             yield "
 \t\t\t\t\t</div>
@@ -296,12 +307,12 @@ class __TwigTemplate_d9dca99c3f94092b2de65a232aafd4c3 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 78
+        // line 76
         yield "
 \t\t\t\t";
-        // line 79
+        // line 77
         yield from $this->unwrap()->yieldBlock('content', $context, $blocks);
-        // line 80
+        // line 78
         yield "\t\t\t</main>
 
 \t\t\t<!-- Footer-->
@@ -321,7 +332,7 @@ class __TwigTemplate_d9dca99c3f94092b2de65a232aafd4c3 extends Template
         yield from [];
     }
 
-    // line 79
+    // line 77
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -356,7 +367,7 @@ class __TwigTemplate_d9dca99c3f94092b2de65a232aafd4c3 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  325 => 79,  305 => 80,  303 => 79,  300 => 78,  291 => 75,  288 => 74,  283 => 73,  274 => 70,  271 => 69,  267 => 68,  245 => 48,  240 => 44,  235 => 40,  229 => 36,  217 => 27,  212 => 24,  199 => 23,  185 => 18,  172 => 17,  161 => 20,  159 => 17,  155 => 15,  142 => 14,  130 => 11,  117 => 10,  93 => 6,  80 => 90,  78 => 23,  74 => 21,  72 => 14,  69 => 13,  67 => 10,  63 => 8,  61 => 6,  54 => 1,);
+        return array (  336 => 77,  316 => 78,  314 => 77,  311 => 76,  302 => 73,  299 => 72,  294 => 71,  285 => 68,  282 => 67,  278 => 66,  272 => 62,  266 => 59,  262 => 58,  259 => 57,  257 => 56,  246 => 48,  241 => 45,  236 => 41,  230 => 37,  218 => 28,  212 => 24,  199 => 23,  185 => 18,  172 => 17,  161 => 20,  159 => 17,  155 => 15,  142 => 14,  130 => 11,  117 => 10,  93 => 6,  80 => 88,  78 => 23,  74 => 21,  72 => 14,  69 => 13,  67 => 10,  63 => 8,  61 => 6,  54 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -384,6 +395,7 @@ class __TwigTemplate_d9dca99c3f94092b2de65a232aafd4c3 extends Template
 \t</head>
 \t<body>
 \t\t{% block body %}
+
 \t\t\t<!-- Responsive navbar-->
 \t\t\t<nav class=\"navbar navbar-expand-lg navbar-warning-subtle bg-warning\">
 \t\t\t\t<div class=\"container\">
@@ -407,8 +419,7 @@ class __TwigTemplate_d9dca99c3f94092b2de65a232aafd4c3 extends Template
 \t\t\t\t\t\t\t\t<a href=\"\" class=\"nav-link\">Vos Paris</a>
 \t\t\t\t\t\t\t</li>
 \t\t\t\t\t\t\t<li class=\"nav-item\">
-\t\t\t\t\t\t\t\t{# <a href=\"{{ path('all_marque')}}\" class=\"nav-link\">Marque</a> #}
-\t\t\t\t\t\t\t\t<a href=\"\" class=\"nav-link\">Connexion</a>
+\t\t\t\t\t\t\t\t<a href=\"{{ path('app_login')}}\" class=\"nav-link\">Connexion</a>
 \t\t\t\t\t\t\t</li>
 \t\t\t\t\t\t\t
 \t\t
@@ -416,16 +427,14 @@ class __TwigTemplate_d9dca99c3f94092b2de65a232aafd4c3 extends Template
 \t\t\t\t\t</div>
 \t\t\t\t</div>
 \t\t\t</nav>
+             {% if app.user %}
+                <div class=\"alert alert-info text-center\">
+                    Vous êtes connecté en tant que <strong>{{ app.user.userIdentifier }}</strong>, 
+                    <a href=\"{{ path('app_logout') }}\" class=\"text-decoration-none\">Déconnexion</a>
+                </div>
+            {% endif %}
 
-\t\t\t<!-- Page header with logo and tagline-->
-\t\t\t<header class=\"py-5 bg-light border-bottom mb-4\">
-\t\t\t\t<div class=\"container\">
-\t\t\t\t\t<div class=\"text-center my-5\">
-\t\t\t\t\t\t<h1 class=\"fw-bolder\">Bienvenue</h1>
-\t\t\t\t\t\t<p class=\"lead mb-0\">Parier, c'est gagner</p>
-\t\t\t\t\t</div>
-\t\t\t\t</div>
-\t\t\t</header>
+\t\t\t
 \t\t
 \t\t\t<main>
 \t\t\t\t{% for message in app.flashes('success') %}

@@ -98,6 +98,17 @@ class __TwigTemplate_db81a7385db1039e91270bd46a0230c8 extends Template
 
         // line 6
         yield "<!-- Page content-->
+
+
+<!-- Page header with logo and tagline-->
+    <header class=\"py-5 bg-light border-bottom mb-4\">
+        <div class=\"container\">
+            <div class=\"text-center my-5\">
+                <h1 class=\"fw-bolder\">Bienvenue</h1>
+                <p class=\"lead mb-0\">Parier, c'est gagner</p>
+            </div>
+        </div>
+    </header>
 <div class=\"container mt-5\">
    
 
@@ -176,6 +187,17 @@ class __TwigTemplate_db81a7385db1039e91270bd46a0230c8 extends Template
 
 {% block content %}
 <!-- Page content-->
+
+
+<!-- Page header with logo and tagline-->
+    <header class=\"py-5 bg-light border-bottom mb-4\">
+        <div class=\"container\">
+            <div class=\"text-center my-5\">
+                <h1 class=\"fw-bolder\">Bienvenue</h1>
+                <p class=\"lead mb-0\">Parier, c'est gagner</p>
+            </div>
+        </div>
+    </header>
 <div class=\"container mt-5\">
    
 
