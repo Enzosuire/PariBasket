@@ -14,8 +14,8 @@ jobs:
       mysql:
         image: mysql:8
         env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: mydatabase
+          MYSQL_ROOT_PASSWORD: projet
+          MYSQL_DATABASE: Paribasket
         ports:
           - 3306:3306
 
@@ -28,7 +28,6 @@ jobs:
       - name: Setup Backend
         working-directory: ./backend
         run: |
-          cp .env.test .env
           composer install
           php bin/console doctrine:database:create --if-not-exists
           php bin/console doctrine:schema:update --force
