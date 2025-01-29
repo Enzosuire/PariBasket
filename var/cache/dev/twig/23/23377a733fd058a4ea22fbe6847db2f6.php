@@ -1003,6 +1003,6 @@ class __TwigTemplate_506b71f443c9c07fd8fc9ff176a10aed extends Template
         {% endautoescape %}</script>
     </div>
 {% endmacro %}
-", "@WebProfiler/Collector/time.html.twig", "/Users/enzosuire/Desktop/PariBasket/Paribasket/vendor/symfony/web-profiler-bundle/Resources/views/Collector/time.html.twig");
+", "@WebProfiler/Collector/time.html.twig", "/Users/enzosuire/Desktop/ECF PariBasket/git/PariBasket/vendor/symfony/web-profiler-bundle/Resources/views/Collector/time.html.twig");
     }
 }

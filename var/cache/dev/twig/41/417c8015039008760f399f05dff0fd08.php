@@ -709,6 +709,6 @@ class __TwigTemplate_e19831b838a69d5bed7770b569c77c45 extends Template
         {% endif %}
     </div>
 {% endblock %}
-", "@WebProfiler/Collector/http_client.html.twig", "/Users/enzosuire/Desktop/PariBasket/Paribasket/vendor/symfony/web-profiler-bundle/Resources/views/Collector/http_client.html.twig");
+", "@WebProfiler/Collector/http_client.html.twig", "/Users/enzosuire/Desktop/ECF PariBasket/git/PariBasket/vendor/symfony/web-profiler-bundle/Resources/views/Collector/http_client.html.twig");
     }
 }

@@ -2219,6 +2219,6 @@ class __TwigTemplate_56be34c839402015e4fd6f0c26fec0b8 extends Template
         </tbody>
     </table>
 {% endmacro %}
-", "@WebProfiler/Collector/form.html.twig", "/Users/enzosuire/Desktop/PariBasket/Paribasket/vendor/symfony/web-profiler-bundle/Resources/views/Collector/form.html.twig");
+", "@WebProfiler/Collector/form.html.twig", "/Users/enzosuire/Desktop/ECF PariBasket/git/PariBasket/vendor/symfony/web-profiler-bundle/Resources/views/Collector/form.html.twig");
     }
 }

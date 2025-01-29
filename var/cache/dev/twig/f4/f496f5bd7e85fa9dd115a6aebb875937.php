@@ -207,6 +207,6 @@ class __TwigTemplate_6f84fe7252be90b1db76c100be1095eb extends Template
 .timeline-graph .timeline-period {
     stroke-width: 0;
 }
-", "@WebProfiler/Collector/time.css.twig", "/Users/enzosuire/Desktop/PariBasket/Paribasket/vendor/symfony/web-profiler-bundle/Resources/views/Collector/time.css.twig");
+", "@WebProfiler/Collector/time.css.twig", "/Users/enzosuire/Desktop/ECF PariBasket/git/PariBasket/vendor/symfony/web-profiler-bundle/Resources/views/Collector/time.css.twig");
     }
 }

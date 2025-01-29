@@ -1441,6 +1441,6 @@ class __TwigTemplate_1e4c3226be45ef50f3b7ae48029532bc extends Template
 
     Sfjs.loadToolbar('{{ token }}');
 /*]]>*/</script>
-", "@WebProfiler/Profiler/toolbar_js.html.twig", "/Users/enzosuire/Desktop/PariBasket/Paribasket/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/toolbar_js.html.twig");
+", "@WebProfiler/Profiler/toolbar_js.html.twig", "/Users/enzosuire/Desktop/ECF PariBasket/git/PariBasket/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/toolbar_js.html.twig");
     }
 }

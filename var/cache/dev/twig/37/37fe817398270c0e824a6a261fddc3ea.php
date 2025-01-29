@@ -110,6 +110,6 @@ class __TwigTemplate_a56544c31953b3498a935e1698549b2c extends Template
        </form>
     </div>
 </div>
-", "@WebProfiler/Profiler/header.html.twig", "/Users/enzosuire/Desktop/PariBasket/Paribasket/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/header.html.twig");
+", "@WebProfiler/Profiler/header.html.twig", "/Users/enzosuire/Desktop/ECF PariBasket/git/PariBasket/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/header.html.twig");
     }
 }
