@@ -29,7 +29,7 @@ class Paris
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'paris')]
-    private ?Matchs $macth = null;
+    private ?Matchs $match = null;
 
     public function getId(): ?int
     {
@@ -96,14 +96,14 @@ class Paris
         return $this;
     }
 
-    public function getMacth(): ?Matchs
+    public function getMatch(): ?Matchs
     {
-        return $this->macth;
+        return $this->match;
     }
 
-    public function setMacth(?Matchs $macth): static
+    public function setMatch(?Matchs $match): static
     {
-        $this->macth = $macth;
+        $this->match = $match;
 
         return $this;
     }

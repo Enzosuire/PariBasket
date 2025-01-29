@@ -16,6 +16,15 @@ class ParisRepository extends ServiceEntityRepository
         parent::__construct($registry, Paris::class);
     }
 
+    public function findAllWithRelations(): array
+{
+    return $this->createQueryBuilder('p')
+        ->leftJoin('p.user', 'u')->addSelect('u')
+        ->leftJoin('p.match', 'm')->addSelect('m')
+        ->getQuery()
+        ->getResult();
+}
+
     //    /**
     //     * @return Paris[] Returns an array of Paris objects
     //     */
