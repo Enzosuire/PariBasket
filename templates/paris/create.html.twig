@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block content %}
+{% block title %}Ajouter un pari{% endblock %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">{{ match.homeTeamName }} 🆚 {{ match.awayTeamName }}</h1>
+    <p><strong>Date :</strong> {{ match.scheduledTime }}</p>
+    <p><strong>Votre solde :</strong> {{ app.user.solde }} €</p>
+
+    {{ form_start(form) }}
+        {{ form_row(form.equipe) }}
+        {{ form_row(form.mise, { 'attr': {'max': app.user.solde} }) }}
+        <button type="submit" class="btn btn-primary">Valider le pari</button>
+    {{ form_end(form) }}
+
+    <br>
+    <a href="{{ path('paris_list') }}" class="btn btn-secondary">Retour</a>
+</div>
+{% endblock %}

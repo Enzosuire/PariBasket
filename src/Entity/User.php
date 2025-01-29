@@ -46,7 +46,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeInterface $Date_naissance = null;
 
     #[ORM\Column(nullable: true) ]
-    private ?int $Solde = null;
+    private ?int $solde = null;
 
     /**
      * @var Collection<int, Paris>
@@ -172,12 +172,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getSolde(): ?int
     {
-        return $this->Solde;
+        return $this->solde;
     }
 
-    public function setSolde(?int $Solde): static
+    public function setSolde(?int $solde): static
     {
-        $this->Solde = $Solde;
+        $this->solde = $solde;
 
         return $this;
     }
@@ -212,4 +212,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    
 }

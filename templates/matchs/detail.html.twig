@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Détails du Match{% endblock %}
+
 
 {% block content %}
+
+{% block title %}Détails du Match{% endblock %}
 <div class="container mt-4">
     <h1 class="text-center mb-4">{{ match.home_team.name }} 🆚 {{ match.away_team.name }}</h1>
+    <div class="d-flex justify-content-center gap-3">
+    <a href="{{ path('paris_create_form', {'matchId': match.gameId}) }}" class="btn btn-success">Parier</a>
 
+
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow-lg p-4">
@@ -32,9 +38,7 @@
                             <li class="list-group-item">❌ Pertes de balle : {{ match.home_team.details.turnovers }}</li>
                             <li class="list-group-item">📈 Efficacité : {{ match.home_team.details.efficiency }}</li>
                         </ul>
-                        {% if match.home_team.score == '' %}
-                            {#<a href="{{ url('paris', {'team': match.home_team.id}) }}" class="btn btn-primary">Pari pour {{ match.home_team.name }}</a>#}
-                        {% endif %}
+
                     </div>
 
                     <!-- Équipe Extérieure -->
@@ -58,11 +62,11 @@
                             <li class="list-group-item">📈 Efficacité : {{ match.away_team.details.efficiency }}</li>
                         </ul>
                         {% if match.away_team.score == '' %}
-                        {#<a href="{{ url('paris', {'team': match.away_team.id}) }}" class="btn btn-primary">Pari pour {{ match.away_team.name }}</a>#}
+                        <a href="{{ url('paris', {'team': match.away_team.id}) }}" class="btn btn-primary">Pari pour {{ match.away_team.name }}</a>
                         {% endif %}
                     </div>
                 </div>
-                
+
                 {% if match.away_team.score != '' %}
 
                     <!-- Détermination du vainqueur -->

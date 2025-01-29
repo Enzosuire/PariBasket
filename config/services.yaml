@@ -22,3 +22,8 @@ services:
         arguments:
             $apiKey: '%env(SPORTRADAR_API_KEY)%'
             $baseUrl: '%env(SPORTRADAR_API_BASE_URL)%'
+
+    # config ParisService
+    App\Service\ParisService:
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
