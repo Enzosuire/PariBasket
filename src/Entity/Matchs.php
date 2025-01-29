@@ -37,7 +37,7 @@ class Matchs
     private Collection $paris;
 
     #[ORM\Column]
-    private ?int $Game_id = null;
+    private ?string $Game_id = null;
 
     public function __construct()
     {
@@ -139,12 +139,12 @@ class Matchs
         return $this;
     }
 
-    public function getGameId(): ?int
+    public function getGameId(): ?string
     {
         return $this->Game_id;
     }
 
-    public function setGameId(int $Game_id): static
+    public function setGameId(string $Game_id): static
     {
         $this->Game_id = $Game_id;
 
