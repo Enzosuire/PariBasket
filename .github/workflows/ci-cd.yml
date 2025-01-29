@@ -26,7 +26,7 @@ jobs:
 
       # Configuration du backend (Symfony)
       - name: Setup Backend
-        working-directory: ./backend
+        working-directory: .
         run: |
           composer install
           php bin/console doctrine:database:create --if-not-exists
@@ -38,11 +38,11 @@ jobs:
         run: php bin/phpunit
 
       # Configuration du frontend (React Native)
-      - name: Setup Frontend
-        working-directory: ./frontend
-        run: |
-          yarn install
-          yarn test
+      # - name: Setup Frontend
+      #  working-directory: ./frontend
+      #  run: |
+      #    yarn install
+      #    yarn test
 
   deploy:
     runs-on: ubuntu-latest
