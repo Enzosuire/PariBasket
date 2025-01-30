@@ -34,6 +34,9 @@ class Paris
     #[ORM\Column(length: 255)]
     private ?string $equipe = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $soldeCloture = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -136,6 +139,19 @@ class Paris
     public function setEquipe(string $equipe): static
     {
         $this->equipe = $equipe;
+        return $this;
+    }
+
+
+
+    public function getSoldeCloture(): ?int
+    {
+        return $this->soldeCloture;
+    }
+
+    public function setSoldeCloture(?int $soldeCloture): static
+    {
+        $this->soldeCloture = $soldeCloture;
         return $this;
     }
 

@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-
+{% block title %}Détails du Match{% endblock %}
 
 {% block content %}
 
-{% block title %}Détails du Match{% endblock %}
+
 <div class="container mt-4">
     <h1 class="text-center mb-4">{{ match.home_team.name }} 🆚 {{ match.away_team.name }}</h1>
     <div class="d-flex justify-content-center gap-3">
@@ -61,7 +61,6 @@
                             <li class="list-group-item">❌ Pertes de balle : {{ match.away_team.details.turnovers }}</li>
                             <li class="list-group-item">📈 Efficacité : {{ match.away_team.details.efficiency }}</li>
                         </ul>
-                        
                     </div>
                 </div>
 

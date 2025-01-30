@@ -85,6 +85,7 @@ class ParisController  extends AbstractController
             $pari->setMise($mise);
             $pari->setGains(0);
             $pari->setPerte(0);
+            $pari->setSoldeCloture($pari->getUser()->getSolde());
 
             $em->persist($pari);
             $em->persist($user);
@@ -139,42 +140,42 @@ class ParisController  extends AbstractController
     }
 
 
-private function updateParis(Matchs $match, EntityManagerInterface $entityManager)
-{
-    // Récupérer les paris associés à ce match
-    $parisRepository = $entityManager->getRepository(Paris::class);
-    $paris = $parisRepository->findBy(['match' => $match]);
+// private function updateParis(Matchs $match, EntityManagerInterface $entityManager)
+// {
+//     // Récupérer les paris associés à ce match
+//     $parisRepository = $entityManager->getRepository(Paris::class);
+//     $paris = $parisRepository->findBy(['match' => $match]);
 
-    // Vérifier les résultats pour chaque pari
-    foreach ($paris as $pari) {
-        // Vérifier si le pari est sur la bonne équipe
-        $user = $pari->getUser();
-        $mise = $pari->getMise();
-        $gagnant = null;
+//     // Vérifier les résultats pour chaque pari
+//     foreach ($paris as $pari) {
+//         // Vérifier si le pari est sur la bonne équipe
+//         $user = $pari->getUser();
+//         $mise = $pari->getMise();
+//         $gagnant = null;
 
-        // Comparer les scores et déterminer si le pari est gagné ou perdu
-        if ($pari->getEquipe() === 'home' && $match->getHomePoints() > $match->getAwayPoints()) {
-            $gagnant = 'home';
-        } elseif ($pari->getEquipe() === 'away' && $match->getAwayPoints() > $match->getHomePoints()) {
-            $gagnant = 'away';
-        }
+//         // Comparer les scores et déterminer si le pari est gagné ou perdu
+//         if ($pari->getEquipe() === 'home' && $match->getHomePoints() > $match->getAwayPoints()) {
+//             $gagnant = 'home';
+//         } elseif ($pari->getEquipe() === 'away' && $match->getAwayPoints() > $match->getHomePoints()) {
+//             $gagnant = 'away';
+//         }
 
-        // Si l'équipe sur laquelle l'utilisateur a parié a gagné
-        if ($gagnant) {
-            $pari->setStatut('terminé');
-            $pari->setGains($mise * 2);  // Le gain est la mise * 2
-            $user->setSolde($user->getSolde() + ($mise * 2));  // Mise à jour du solde de l'utilisateur
-        } else {
-            // Si l'utilisateur a perdu le pari
-            $pari->setStatut('terminé');
-            $pari->setPerte($mise);  // La perte est égale à la mise
-            $user->setSolde($user->getSolde() - $mise);  // Mise à jour du solde de l'utilisateur
-        }
+//         // Si l'équipe sur laquelle l'utilisateur a parié a gagné
+//         if ($gagnant) {
+//             $pari->setStatut('terminé');
+//             $pari->setGains($mise * 2);  // Le gain est la mise * 2
+//             $user->setSolde($user->getSolde() + ($mise * 2));  // Mise à jour du solde de l'utilisateur
+//         } else {
+//             // Si l'utilisateur a perdu le pari
+//             $pari->setStatut('terminé');
+//             $pari->setPerte($mise);  // La perte est égale à la mise
+//             $user->setSolde($user->getSolde() - $mise);  // Mise à jour du solde de l'utilisateur
+//         }
 
-        $entityManager->persist($pari);
-        $entityManager->persist($user);  // Ne pas oublier de persister l'utilisateur
-    }
-}
+//         $entityManager->persist($pari);
+//         $entityManager->persist($user);  // Ne pas oublier de persister l'utilisateur
+//     }
+// }
 
     #[Route('/paris/delete/{id}', name: 'paris_delete', methods: ['POST'])]
     public function delete($id, Request $request, EntityManagerInterface $em, Security $security): JsonResponse

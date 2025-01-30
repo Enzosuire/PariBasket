@@ -20,11 +20,13 @@ class ParisFormType extends AbstractType
         $builder
             ->add('equipe', ChoiceType::class, [
                 'choices' => [
-                    $match->getHomeTeamName() => $match->getHomeTeamName(),
+                    $match->getHomeTeamName() => $match->getHomeTeamName() ,
                     $match->getAwayTeamName() => $match->getAwayTeamName(),
                 ],
                 'label' => 'Choisissez votre équipe',
-                'expanded' => true, // Afficher sous forme de boutons radio
+                'expanded' => true,
+                'multiple' => false,
+                'attr' => ['class' => 'form-check'],
             ])
             ->add('mise', IntegerType::class, [
                 'attr' => ['max' => $options['user_solde']],
