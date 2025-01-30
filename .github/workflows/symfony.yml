@@ -49,7 +49,7 @@ jobs:
         ls -l data/  # Debug
 
     - name: Run Migrations
-      run: php bin/console doctrine:schema:update
+      run: php bin/console doctrine:schema:update --force
 
     - name: Clear Doctrine Cache
       run: php bin/console doctrine:cache:clear-metadata
