@@ -34,7 +34,6 @@ class UserTest extends TestCase
         $existingUser = new User();
         $existingUser->setEmail('test@example.com');
 
-        // Configurer le mock du repository pour renvoyer l'utilisateur existant
         $this->userRepository->method('findOneBy')
             ->with(['email' => 'test@example.com'])
             ->willReturn($existingUser);
