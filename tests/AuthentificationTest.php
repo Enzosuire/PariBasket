@@ -1,23 +1,14 @@
 <?php
 
 use App\Repository\UserRepository;
-use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AuthenticationTest extends WebTestCase
 {
-    private EntityManagerInterface $entityManager;
-    private UserPasswordHasherInterface $passwordHasher;
-
-    protected function setUp(): void
+    protected static function getKernelClass(): string
     {
-        self::bootKernel();
-        $this->entityManager = self::getContainer()->get(EntityManagerInterface::class);
-        $this->passwordHasher = self::getContainer()->get(UserPasswordHasherInterface::class);
+        return \App\Kernel::class;
     }
-
     public function testAuthenticationRequiredForBetting()
     {
         $client = static::createClient();
@@ -28,24 +19,13 @@ class AuthenticationTest extends WebTestCase
         // Vérifier que l'utilisateur est redirigé vers la page de connexion
         $this->assertResponseRedirects('/login');
     }
-
     public function testAccessAfterLogin()
     {
-        // Création d'un utilisateur
-        $user = new User();
-        $user->setEmail('test@example.com');
-        $user->setRoles(['ROLE_USER']);
-        $user->setPassword($this->passwordHasher->hashPassword($user, 'password123')); // 🔹 Correction ici
-
-        // Sauvegarde en base
-        $this->entityManager->persist($user);
-        $this->entityManager->flush();
-
         $client = static::createClient();
         $userRepository = static::getContainer()->get(UserRepository::class);
     
         // Récupérer un utilisateur existant depuis la base de données
-        $testUser = $userRepository->findOneBy(['email' => 'test@example.com']); // 🔹 Correction ici
+        $testUser = $userRepository->findOneByEmail('test@example.com');
     
         // Simuler la connexion de l'utilisateur
         $client->loginUser($testUser);
@@ -56,4 +36,5 @@ class AuthenticationTest extends WebTestCase
         // Vérifier que la page utilisateur est accessible
         $this->assertResponseIsSuccessful();
     }
+    
 }
