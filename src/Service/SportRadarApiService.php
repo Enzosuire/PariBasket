@@ -1,5 +1,5 @@
 <?php
- 
+
 namespace App\Service;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -15,6 +15,7 @@ class SportRadarApiService
         $this->httpClient = $httpClient;
         $this->apiKey = $apiKey;
         $this->baseUrl = $baseUrl;
+
     }
 
     /**
@@ -35,7 +36,7 @@ class SportRadarApiService
     }
 
 
-    //Recupere le detail d'un match 
+    //Recupere le detail d'un match
     public function getMatchDetails(string $matchId): array
     {
         $endpoint = sprintf('%s/nbdl/trial/v8/en/games/%s/pbp.json',$this->baseUrl, $matchId);
@@ -82,4 +83,5 @@ class SportRadarApiService
         ];
 
     }
+
 }

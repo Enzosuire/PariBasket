@@ -33,7 +33,7 @@ class Matchs
     /**
      * @var Collection<int, Paris>
      */
-    #[ORM\OneToMany(targetEntity: Paris::class, mappedBy: 'macth')]
+    #[ORM\OneToMany(targetEntity: Paris::class, mappedBy: 'match')]
     private Collection $paris;
 
     #[ORM\Column]
@@ -121,7 +121,7 @@ class Matchs
     {
         if (!$this->paris->contains($pari)) {
             $this->paris->add($pari);
-            $pari->setMacth($this);
+            $pari->setMatch($this);
         }
 
         return $this;
@@ -131,8 +131,8 @@ class Matchs
     {
         if ($this->paris->removeElement($pari)) {
             // set the owning side to null (unless already changed)
-            if ($pari->getMacth() === $this) {
-                $pari->setMacth(null);
+            if ($pari->getMatch() === $this) {
+                $pari->setMatch(null);
             }
         }
 

@@ -29,7 +29,10 @@ class Paris
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'paris')]
-    private ?Matchs $macth = null;
+    private ?Matchs $match = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $equipe = null;
 
     public function getId(): ?int
     {
@@ -96,15 +99,44 @@ class Paris
         return $this;
     }
 
-    public function getMacth(): ?Matchs
+    public function getMatch(): ?Matchs
     {
-        return $this->macth;
+        return $this->match;
     }
 
-    public function setMacth(?Matchs $macth): static
+    public function setMatch(?Matchs $match): static
     {
-        $this->macth = $macth;
+        $this->match = $match;
 
         return $this;
     }
+
+        // Ajoute un attribut `matchId` pour stocker l'ID du match récupéré
+    private ?string $matchId = null;
+
+    // Getter pour `matchId`
+    public function getMatchId(): ?string
+    {
+        return $this->matchId;
+    }
+
+    // Setter pour `matchId`
+    public function setMatchId(?string $matchId): self
+    {
+        $this->matchId = $matchId;
+        return $this;
+    }
+
+
+    public function getEquipe(): ?string
+    {
+        return $this->equipe;
+    }
+
+    public function setEquipe(string $equipe): static
+    {
+        $this->equipe = $equipe;
+        return $this;
+    }
+
 }
