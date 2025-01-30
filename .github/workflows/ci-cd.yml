@@ -12,49 +12,71 @@ jobs:
 
     services:
       mysql:
-        image: mysql:8
+        image: mysql:5.7 
         env:
-          MYSQL_ROOT_PASSWORD: projet
+          MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: Paribasket
         ports:
-          - 3306:3306
+          - 3306:3306 
 
     steps:
-      # Checkout du code
+      #  Récupération du code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Configuration du backend (Symfony)
-      - name: Setup Backend
-        working-directory: .
+      #  Installation de PHP et des extensions
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          extensions: mbstring, pdo, pdo_mysql, intl
+
+      #  Cache Composer pour accélérer les builds
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: composer-${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: composer-${{ runner.os }}-
+
+      #  Installation des dépendances Symfony
+      - name: Install Dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      #  Attendre que MySQL soit prêt
+      - name: Wait for MySQL
+        run: sleep 10s
+
+      #  Configuration de la base de données
+      - name: Setup Database
+        env:
+          DATABASE_URL: mysql://root:root@127.0.0.1:3306/Paribasket?charset=utf8mb4
         run: |
-          composer install
           php bin/console doctrine:database:create --if-not-exists
-          php bin/console doctrine:schema:update --force
+          php bin/console doctrine:migrations:migrate --no-interaction
 
-      # Lancer les tests Symfony
+      #  Lancer les tests Symfony
       - name: Run Backend Tests
-        working-directory: ./backend
+        env:
+          DATABASE_URL: mysql://root:root@127.0.0.1:3306/Paribasket?charset=utf8mb4
         run: php bin/phpunit
-
-      # Configuration du frontend (React Native)
-      # - name: Setup Frontend
-      #  working-directory: ./frontend
-      #  run: |
-      #    yarn install
-      #    yarn test
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
 
     steps:
-      # Checkout du code
+      #  Récupération du code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Déployer les services avec Docker Compose
+      #  Vérifier que docker-compose.yml existe avant de déployer
       - name: Deploy with Docker Compose
         run: |
-          docker-compose pull
-          docker-compose up -d
+          if [ -f docker-compose.yml ]; then
+            docker-compose pull
+            docker-compose up -d
+          else
+            echo "No docker-compose.yml found!"
+            exit 1
+          fi
