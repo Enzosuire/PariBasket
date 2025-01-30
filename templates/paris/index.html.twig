@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1 class="text-center">Liste des Paris</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Statut</th>
+                <th>Mise</th>
+                <th>Gains</th>
+                <th>Perte</th>
+                <th>Equipe </th>
+                <th>Match</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for pari in result %}
+
+                <tr>
+                    <td>{{ pari.id }}</td>
+                    <td>{{ pari.statut }}</td>
+                    <td>{{ pari.mise }}</td>
+                    <td>{{ pari.gains }}</td>
+                    <td>{{ pari.perte }}</td>
+                    <td>{{ pari.equipe }}</td>
+                    <td>{{ pari.match ? pari.match.id : 'N/A' }}</td>
+                    {# <td>
+                        <a href="{{ path('paris_show', {'id': pari.id}) }}" class="btn btn-info btn-sm">Voir</a>
+                        <a href="{{ path('paris_update', {'id': pari.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                    </td> #}
+                    <td>
+                    {% if pari.statut == 'en cours' %}
+                          <form class="delete-pari-form" data-id="{{ pari.id }}" method="post">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete_pari_' ~ pari.id) }}">
+                            <button type="button" class="btn btn-danger btn-sm delete-pari-btn">
+                                Supprimer
+                            </button>
+                        </form>
+                    {% endif %}
+
+
+                    </td>
+
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8" class="text-center">Aucun pari trouvé.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {# <a href="{{ path('paris_create') }}" class="btn btn-success">Ajouter un pari</a> #}
+{% endblock %}

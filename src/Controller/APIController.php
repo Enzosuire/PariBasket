@@ -49,6 +49,7 @@ class APIController extends AbstractController
     public function getResult(): JsonResponse
     {
         try {
+            
             // Récupère les données du planning des matchs terminés
             $schedule = $this->sportRadarApi->getMatchSchedule();
             
@@ -94,7 +95,7 @@ class APIController extends AbstractController
                     'alias' => $match['home']['alias'],
                     'market' => $match['home']['market'],
                     'id' => $match['home']['id'],
-                    //'score' => $match['home']['points'],
+                    'score' =>  $match['home']['points'] ?? '',
                     'details' => [
                         'games_played' => $homeTeamDetails['own_record']['total']['games_played'], // Nombre total de matchs joués
                         'total_points' => $homeTeamDetails['own_record']['total']['points'], // Total des points marqués par l'équipe
@@ -112,7 +113,7 @@ class APIController extends AbstractController
                     'alias' => $match['away']['alias'],
                     'market' => $match['away']['market'],
                     'id' => $match['away']['id'],
-                    //'score' => $match['away']['points'],
+                    'score' => $match['away']['points'] ?? '',
                     'details' => [
                         'games_played' => $awayTeamDetails['own_record']['total']['games_played'], // Nombre total de matchs joués
                         'total_points' => $awayTeamDetails['own_record']['total']['points'], // Total des points marqués par l'équipe

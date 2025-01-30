@@ -15,6 +15,7 @@
 
 		{% block javascripts %}
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+			{{ encore_entry_script_tags('app') }}
 
 			{% block importmap %}
 				{{ importmap('app') }}
@@ -35,53 +36,67 @@
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-							<li class="nav-item">
-								<a href="{{ path('app_home')}}" class="nav-link">Home</a>
-							</li>
-							<li class="nav-item">
-								<a href="{{ path('app_admin')}}" class="nav-link">Admin</a>
-								{# <a href="" class="nav-link">Admin</a> #}
-							</li>
-							<li class="nav-item">
-								{# <a href="{{ path('all_vehicule')}}" class="nav-link">Vos Paris</a> #}
-								<a href="" class="nav-link">Vos Paris</a>
-							</li>
-							<li class="nav-item">
-								<a href="{{ path('app_login')}}" class="nav-link">Connexion</a>
-							</li>
-							<li class="nav-item">
-								<a href="{{ path('app_register')}}" class="nav-link">S'incrire</a>
-							</li>
-							<li class="nav-item">
-								{% if app.user %}
-									<a href="{{ path('app_user') }}" class="nav-link">
-										<i class="bi bi-person-circle"></i>
-									</a>
-								{% else %}
-									<!-- Pas d'icône, juste un message ou un lien pour se connecter -->
+
+						<li class="nav-item">
+									<a href="{{ path('app_home')}}" class="nav-link">Home</a>
+								</li>
+							{% if app.user %}
+								
+								<li class="nav-item">
+									<a href="{{ path('app_matchs')}}" class="nav-link">Les matchs</a>
+								</li>
+								<li class="nav-item">
+									{# <a href="{{ path('all_vehicule')}}" class="nav-link">Vos Paris</a> #}
+									<a href="{{ path('paris_list')}}" class="nav-link">Vos Paris</a>
+								</li>
+
+								<li class="nav-item">
+										<a href="{{ path('app_user') }}" class="nav-link">
+											<i class="bi bi-person-circle"></i>
+										</a>
+								</li>
+								<li class="nav-item">
+									{# <a href="{{ path('all_proprietaire')}}" class="nav-link">Admin</a> #}
+									<a href="" class="nav-link">Admin</a>
+								</li>
+
+							 {% else %}
+
+							 	<li class="nav-item">
+									<a href="{{ path('app_login')}}" class="nav-link">Connexion</a>
+								</li>
+								<li class="nav-item">
+									<a href="{{ path('app_register')}}" class="nav-link">S'incrire</a>
+								</li>
+
+								<!-- Pas d'icône, juste un message ou un lien pour se connecter -->
+								<li class="nav-item">
+
 									<a href="{{ path('app_login') }}" class="nav-link">
 										<i class="bi bi-person-circle"></i>
 									</a>
-								{% endif %}
-							</li>
+								</li>
 
 
 
-							
-		
+							{% endif %}
+
+
+
+
 						</ul>
 					</div>
 				</div>
 			</nav>
              {% if app.user %}
                 <div class="alert alert-info text-center">
-                    Vous êtes connecté en tant que <strong>{{ app.user.userIdentifier }}</strong>, 
+                    Vous êtes connecté en tant que <strong>{{ app.user.userIdentifier }}</strong>,
                     <a href="{{ path('app_logout') }}" class="text-decoration-none">Déconnexion</a>
                 </div>
             {% endif %}
 
-			
-		
+
+
 			<main>
 				{% for message in app.flashes('success') %}
 					<div class="alert alert-success" role="alert">

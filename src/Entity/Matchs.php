@@ -33,11 +33,11 @@ class Matchs
     /**
      * @var Collection<int, Paris>
      */
-    #[ORM\OneToMany(targetEntity: Paris::class, mappedBy: 'macth')]
+    #[ORM\OneToMany(targetEntity: Paris::class, mappedBy: 'match')]
     private Collection $paris;
 
     #[ORM\Column]
-    private ?int $Game_id = null;
+    private ?string $Game_id = null;
 
     public function __construct()
     {
@@ -121,7 +121,7 @@ class Matchs
     {
         if (!$this->paris->contains($pari)) {
             $this->paris->add($pari);
-            $pari->setMacth($this);
+            $pari->setMatch($this);
         }
 
         return $this;
@@ -131,20 +131,20 @@ class Matchs
     {
         if ($this->paris->removeElement($pari)) {
             // set the owning side to null (unless already changed)
-            if ($pari->getMacth() === $this) {
-                $pari->setMacth(null);
+            if ($pari->getMatch() === $this) {
+                $pari->setMatch(null);
             }
         }
 
         return $this;
     }
 
-    public function getGameId(): ?int
+    public function getGameId(): ?string
     {
         return $this->Game_id;
     }
 
-    public function setGameId(int $Game_id): static
+    public function setGameId(string $Game_id): static
     {
         $this->Game_id = $Game_id;
 
