@@ -1,12 +1,15 @@
 <?php
 
+namespace App\Tests;
+
 use PHPUnit\Framework\TestCase;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class UserTest extends TestCase
+class UserTest extends KernelTestCase
 {
     private $entityManager;
     private $userRepository;
@@ -14,69 +17,75 @@ class UserTest extends TestCase
 
     protected function setUp(): void
     {
-        // Mock de l'EntityManager
-        $this->entityManager = $this->createMock(EntityManagerInterface::class);
+        // Démarrer le kernel Symfony
+        self::bootKernel();
 
-        // Mock du UserRepository
-        $this->userRepository = $this->createMock(EntityRepository::class);
+        // Récupérer le container de services
+        $container = static::getContainer();
 
-        // Simuler `getRepository(User::class)` pour retourner notre mock
-        $this->entityManager->method('getRepository')
-            ->willReturn($this->userRepository);
-
-        // Mock du password hasher
-        $this->passwordHasher = $this->createMock(UserPasswordHasherInterface::class);
+        // Obtenir l'EntityManager réel
+        $this->entityManager = $container->get('doctrine')->getManager();
+        
+        // Obtenir le UserRepository réel
+        $this->userRepository = $this->entityManager->getRepository(User::class);
+        
+        // Obtenir le service de hashage de mot de passe réel
+        $this->passwordHasher = $container->get('security.password_hasher');
     }
 
     public function testEmailAlreadyTaken()
     {
-        // Simuler un utilisateur existant en BDD
+        // Créer un utilisateur de test
         $existingUser = new User();
         $existingUser->setEmail('test@example.com');
+        $existingUser->setPassword($this->passwordHasher->hashPassword(
+            $existingUser,
+            'password123'
+        ));
 
-        $this->userRepository->method('findOneBy')
-            ->with(['email' => 'test@example.com'])
-            ->willReturn($existingUser);
+        // Persister l'utilisateur
+        $this->entityManager->persist($existingUser);
+        $this->entityManager->flush();
 
-        // Simuler une nouvelle tentative d'inscription avec le même email
-        $newUser = new User();
-        $newUser->setEmail('test@example.com');
-
-        // Vérifier que l'utilisateur existe déjà
-        $this->assertNotNull(
-            $this->userRepository->findOneBy(['email' => $newUser->getEmail()]),
-            'L\'email existe déjà en base de données.'
-        );
+        // Vérifier que l'utilisateur existe
+        $foundUser = $this->userRepository->findOneBy(['email' => 'test@example.com']);
+        $this->assertNotNull($foundUser, 'L\'utilisateur devrait exister en base de données');
+        
+        // Nettoyer la base de données
+        $this->entityManager->remove($existingUser);
+        $this->entityManager->flush();
     }
 
     public function testSuccessfulRegistration()
     {
         $newUser = new User();
         $newUser->setEmail('newuser@example.com');
-        $newUser->setPassword('securepassword123');
+        $plainPassword = 'securepassword123';
 
-        // Simuler un hashage correct du mot de passe
-        $hashedPassword = 'hashed_securepassword123';
-        $this->passwordHasher->method('hashPassword')
-            ->willReturn($hashedPassword);
+        // Hasher le mot de passe
+        $hashedPassword = $this->passwordHasher->hashPassword($newUser, $plainPassword);
+        $newUser->setPassword($hashedPassword);
 
-        // Simuler que l'utilisateur n'existe pas encore en base
-        $this->userRepository->method('findOneBy')
-            ->with(['email' => 'newuser@example.com'])
-            ->willReturn(null);
-
-        // Injecter le mot de passe haché
-        $newUser->setPassword($this->passwordHasher->hashPassword($newUser, $newUser->getPassword()));
-
-        // Configurer l'attente de `persist()` et `flush()`
-        $this->entityManager->expects($this->once())->method('persist')->with($newUser);
-        $this->entityManager->expects($this->once())->method('flush');
-
-        // Simuler l'enregistrement de l'utilisateur
+        // Persister le nouvel utilisateur
         $this->entityManager->persist($newUser);
         $this->entityManager->flush();
 
-        // Vérifier que le mot de passe a bien été haché
-        $this->assertNotEquals('securepassword123', $newUser->getPassword());
+        // Vérifier que l'utilisateur a été créé
+        $foundUser = $this->userRepository->findOneBy(['email' => 'newuser@example.com']);
+        $this->assertNotNull($foundUser);
+        $this->assertNotEquals($plainPassword, $foundUser->getPassword());
+
+        // Nettoyer la base de données
+        $this->entityManager->remove($newUser);
+        $this->entityManager->flush();
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        // Fermer l'EntityManager
+        $this->entityManager->close();
+        $this->entityManager = null;
     }
 }
