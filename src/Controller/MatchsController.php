@@ -28,11 +28,39 @@ public function index(APIController $apiController, EntityManagerInterface $enti
         // Récupérer tous les matchs déjà présents en base pour éviter les requêtes multiples
         $existingMatches = $entityManager->getRepository(Matchs::class)->findAll();
 
-        // Créer un tableau de correspondance par gameId pour un accès rapide
-        $existingMatchesByGameId = [];
-        foreach ($existingMatches as $match) {
-            $existingMatchesByGameId[$match->getGameId()] = $match;
+    // Créer un tableau de correspondance par gameId pour un accès rapide
+    $existingMatchesByGameId = [];
+    foreach ($existingMatches as $match) {
+        $existingMatchesByGameId[$match->getGameId()] = $match;
+    }
+
+    // Scanne tous les matchs terminés
+    foreach ($matchsPasse as $match) {
+        if (isset($match['gameId'])) {
+            // Vérifier si le match existe déjà en base
+            if (isset($existingMatchesByGameId[$match['gameId']])) {
+                $existingMatch = $existingMatchesByGameId[$match['gameId']];
+                if ($existingMatch->getHomePoints()== null &&  $existingMatch->getAwayPoints()== null) {
+                // Mettre à jour les scores
+                $existingMatch->setHomePoints($match['home_score']);
+                $existingMatch->setAwayPoints($match['away_score']);
+                $existingMatch->setScheduledTime($match['date']);  // Si tu veux aussi mettre à jour la date
+                 // Appeler le service pour mettre à jour les paris
+                $ParisService->updateParis($existingMatch);
+                }else {
+                    continue;
+                }
+
+            }
+        } else {
+            // Si le match n'a pas de gameId, mettre une alerte pour l'utilisateur
+            $this->addFlash('error', 'Erreur dans la récupération des résultats du match.');
+
+
+            continue;
         }
+
+    }
 
         // Scanne tous les matchs terminés
         foreach ($matchsPasse as $match) {
@@ -67,7 +95,7 @@ public function index(APIController $apiController, EntityManagerInterface $enti
     } else {
         //redirige au login
         return $this->redirectToRoute('login');
-    } 
+    }
 }
 
 
