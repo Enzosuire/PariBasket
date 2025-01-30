@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AuthenticationTest extends WebTestCase
 {
+    private $passwordHasher;
+
     protected static function getKernelClass(): string
     {
         return \App\Kernel::class;
