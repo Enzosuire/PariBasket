@@ -1,6 +1,7 @@
 <?php
 
 use App\Repository\UserRepository;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AuthenticationTest extends WebTestCase
