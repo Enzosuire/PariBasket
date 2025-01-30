@@ -9,10 +9,14 @@ use Symfony\Component\Routing\Attribute\Route;
 final class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(): Response
+    public function index(APIController $apiController): Response
     {
+        // Récupérer les matchs à venir depuis l'API
+        $jsonResponse = $apiController->getMatchSchedule();
+        $matchsAVenir = json_decode($jsonResponse->getContent(), true);
+
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'matchs' => $matchsAVenir,
         ]);
     }
 }
