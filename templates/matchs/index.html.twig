@@ -1,122 +1,100 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Matchs{% endblock %}
 
+
 {% block content %}
-<div class="container mt-4">
-    <h1 class="text-center mb-4">📅 Matchs</h1>
+{% if app.user %}
+
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">📅 Matchs</h1>
 
 
-    <!-- Matchs passés -->
-    <h2 class="text-success text-center mt-5">Matchs passés</h2>
-    {% if matchs_passe is empty %}
-        <div class="alert alert-secondary text-center">Aucun match passé trouvé.</div>
-    {% else %}
-        <div class="row justify-content-center">
-            {% for match in matchs_passe|slice(0, 10) %}
-                <div class="col-md-6 mb-4">
-                    <div class="card shadow-sm border-0 rounded-lg past-match-card">
-                        <div class="card-body">
-                            <h5 class="card-title text-center fw-bold">
-                                🏀 {{ match.home_team }} <span class="text-danger">vs</span> {{ match.away_team }}
-                            </h5>
-                            <hr>
-                            <p class="card-text"><strong>🏆 Vainqueur :</strong> 
-                                {% if match.home_score > match.away_score %}
-                                    <span class="text-success">{{ match.home_team }}</span>
-                                {% elseif match.home_score < match.away_score %}
-                                    <span class="text-success">{{ match.away_team }}</span>
-                                {% else %}
-                                    <span class="text-warning">Match nul</span>
-                                {% endif %}
-                            </p>
-                            <p class="card-text"><strong>🔢 Score :</strong> 
-                                {{ match.home_score }} - {{ match.away_score }}
-                            </p>
-                            <p class="card-text"><strong>📆 Date :</strong> {{ match.date|date("d/m/Y H:i") }}</p>
-                            <a href="{{ path('app_matchs_details', {'id': match.gameId}) }}" class="btn btn-info">Voir les détails</a>
+        <!-- Matchs passés -->
+        <h2 class="text-success text-center mt-5">Matchs passés</h2>
+        {% if matchs_passe is empty %}
+            <div class="alert alert-secondary text-center">Aucun match passé trouvé.</div>
+        {% else %}
+            <div class="row justify-content-center">
+                {% for match in matchs_passe|slice(0, 10) %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card shadow-sm border-0 rounded-lg past-match-card">
+                            <div class="card-body">
+                                <h5 class="card-title text-center fw-bold">
+                                    🏀 {{ match.home_team }} <span class="text-danger">vs</span> {{ match.away_team }}
+                                </h5>
+                                <hr>
+                                <p class="card-text"><strong>🏆 Vainqueur :</strong> 
+                                    {% if match.home_score > match.away_score %}
+                                        <span class="text-success">{{ match.home_team }}</span>
+                                    {% elseif match.home_score < match.away_score %}
+                                        <span class="text-success">{{ match.away_team }}</span>
+                                    {% else %}
+                                        <span class="text-warning">Match nul</span>
+                                    {% endif %}
+                                </p>
+                                <p class="card-text"><strong>🔢 Score :</strong> 
+                                    {{ match.home_score }} - {{ match.away_score }}
+                                </p>
+                                <p class="card-text"><strong>📆 Date :</strong> {{ match.date|date("d/m/Y H:i") }}</p>
+                                <a href="{{ path('app_matchs_details', {'id': match.gameId}) }}" class="btn btn-info">Voir les détails</a>
 
-                            
+                                
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
 
-    <!-- Matchs à venir -->
-    <h2 class="text-primary text-center">Matchs à venir</h2>
-    {% if matchs is empty %}
-        <div class="alert alert-warning text-center">Aucun match à venir pour le moment.</div>
-    {% else %}
-        <div class="row justify-content-center">
-            {% for match in matchs|slice(0, 10) %}
-                <div class="col-md-6 mb-4">
-                    <div class="card shadow-sm border-0 rounded-lg match-card">
-                        <div class="card-body">
-                            <h5 class="card-title text-center fw-bold">
-                                🏀 {{ match.home_team }} <span class="text-danger">vs</span> {{ match.away_team }}
-                            </h5>
-                            <hr>
-                            <p class="card-text"><strong>📆 Date :</strong> {{ match.date|date("d/m/Y H:i") }}</p>
-                            <p class="card-text"><strong>🏟 Stade :</strong> {{ match.name }} ({{ match.city }})</p>
-                            <p class="card-text"><strong>👥 Capacité :</strong> {{ match.capacity }} places</p>
-                            <a href="{{ path('app_matchs_details', {'id': match.gameId}) }}" class="btn btn-info">Voir les détails</a>
+        <!-- Matchs à venir -->
+        <h2 class="text-primary text-center">Matchs à venir</h2>
+        {% if matchs is empty %}
+            <div class="alert alert-warning text-center">Aucun match à venir pour le moment.</div>
+        {% else %}
+            <div class="row justify-content-center">
+                {% for match in matchs|slice(0, 10) %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card shadow-sm border-0 rounded-lg match-card">
+                            <div class="card-body">
+                                <h5 class="card-title text-center fw-bold">
+                                    🏀 {{ match.home_team }} <span class="text-danger">vs</span> {{ match.away_team }}
+                                </h5>
+                                <hr>
+                                <p class="card-text"><strong>📆 Date :</strong> {{ match.date|date("d/m/Y H:i") }}</p>
+                                <p class="card-text"><strong>🏟 Stade :</strong> {{ match.name }} ({{ match.city }})</p>
+                                <p class="card-text"><strong>👥 Capacité :</strong> {{ match.capacity }} places</p>
+                                <a href="{{ path('app_matchs_details', {'id': match.gameId}) }}" class="btn btn-info">Voir les détails</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
 
-    <!-- Matchs passés -->
-    <h2 class="text-success text-center mt-5">Matchs passés</h2>
-    {% if matchs_passe is empty %}
-        <div class="alert alert-secondary text-center">Aucun match passé trouvé.</div>
-    {% else %}
-        <div class="row justify-content-center">
-            {% for match in matchs_passe|slice(0, 10) %}
-                <div class="col-md-6 mb-4">
-                    <div class="card shadow-sm border-0 rounded-lg past-match-card">
-                        <div class="card-body">
-                            <h5 class="card-title text-center fw-bold">
-                                🏀 {{ match.home_team }} <span class="text-danger">vs</span> {{ match.away_team }}
-                            </h5>
-                            <hr>
-                            <p class="card-text"><strong>🏆 Vainqueur :</strong> 
-                                {% if match.home_score > match.away_score %}
-                                    <span class="text-success">{{ match.home_team }}</span>
-                                {% elseif match.home_score < match.away_score %}
-                                    <span class="text-success">{{ match.away_team }}</span>
-                                {% else %}
-                                    <span class="text-warning">Match nul</span>
-                                {% endif %}
-                            </p>
-                            <p class="card-text"><strong>🔢 Score :</strong> 
-                                {{ match.home_score }} - {{ match.away_score }}
-                            </p>
-                            <p class="card-text"><strong>📆 Date :</strong> {{ match.date|date("d/m/Y H:i") }}</p>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-</div>
+    </div>
 
-<style>
-    .match-card, .past-match-card {
-        transition: transform 0.2s, box-shadow 0.3s;
-    }
+    <style>
+        .match-card, .past-match-card {
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
 
-    .match-card:hover, .past-match-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    }
+        .match-card:hover, .past-match-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
 
-    hr {
-        margin: 10px 0;
-    }
-</style>
+        hr {
+            margin: 10px 0;
+        }
+    </style>
 
+
+
+{% else %}
+    <div class="alert alert-danger text-center">Vous n'avez pas accès à cette
+    page. Veuillez vous <a href="{{ path('app_login') }}">connecter</a>
+    </div>
+
+{% endif %}
+  
 {% endblock %}
