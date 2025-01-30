@@ -131,6 +131,19 @@ class APIController extends AbstractController
             return new JsonResponse(['error' => $e->getMessage()], 500);
         }
     }
+
+     //Récupère les statistiques saisonnières d'une équipe
+     #[Route(path: '/api/teams/{teamId}/stats', name: 'team_stats', methods: ['GET'])]
+     public function getTeamStats(string $teamId): JsonResponse
+     {
+         try {
+             // Récupère les statistiques saisonnières de l'équipe
+             $stats = $this->sportRadarApi->getSeasonalStats($teamId);
+             return new JsonResponse($stats);
+         } catch (\Exception $e) {
+             return new JsonResponse(['error' => $e->getMessage()], 500);
+         }
+     }
         
     
 
