@@ -21,6 +21,16 @@ class AuthenticationTest extends WebTestCase
     }
     public function testAccessAfterLogin()
     {
+                // Création d'un utilisateur
+        $user = new User();
+        $user->setEmail('test@example.com');
+        $user->setRoles(['ROLE_USER']);
+        $user->setPassword($this->passwordHasher->hashPassword($user, 'password123'));
+
+        // Sauvegarde en base
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+
         $client = static::createClient();
         $userRepository = static::getContainer()->get(UserRepository::class);
     
