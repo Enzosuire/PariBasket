@@ -28,7 +28,7 @@ class AuthenticationTest extends WebTestCase
         $user = new User();
         $user->setEmail('test@example.com');
         $user->setRoles(['ROLE_USER']);
-        $user->setPassword($this->passwordHasher->hashPassword($user, 'password123'));
+        $user->setPassword($this->passwordHasher->hashPassword('password123'));
 
         // Sauvegarde en base
         $this->entityManager->persist($user);
