@@ -32,24 +32,27 @@ class ParisService
             // Vérifier si le pari est sur la bonne équipe
             $user = $pari->getUser();
             $mise = $pari->getMise();
-            $gagnant = null;
 
-            // Comparer les scores et déterminer si le pari est gagné ou perdu
-            if ($pari->getEquipe() === 'home' && $match->getHomePoints() > $match->getAwayPoints()) {
-                $gagnant = 'home';
-            } elseif ($pari->getEquipe() === 'away' && $match->getAwayPoints() > $match->getHomePoints()) {
-                $gagnant = 'away';
+            $gagnant = null;
+            if ($match->getHomePoints() > $match->getAwayPoints()) {
+                $gagnant = $match->getHomeTeamName();
+
+            }else {
+                $gagnant = $match->getAwayTeamName();
             }
 
             // Si l'équipe sur laquelle l'utilisateur a parié a gagné
-            if ($gagnant) {
-                $pari->setStatut('terminé');
+            if ($pari->getEquipe() === $gagnant) {
+
                 $pari->setGains($mise * 2);  // Le gain est la mise * 2
-                $user->setSolde($user->getSolde() + ($mise * 2));  // Mise à jour du solde de l'utilisateur
+                $user->setSolde($user->getSolde() +  $pari->getGains());  // Mise à jour du solde de l'utilisateur
+                $pari->setStatut('Gagné');
+                $pari->setSoldeCloture($pari->getUser()->getSolde());
             } else {
                 // Si l'utilisateur a perdu le pari
-                $pari->setStatut('terminé');
+                $pari->setStatut('Perdu');
                 $pari->setPerte($mise);  // La perte est égale à la mise
+                $pari->setSoldeCloture($pari->getUser()->getSolde());
             }
 
             // Persister les entités modifiées
