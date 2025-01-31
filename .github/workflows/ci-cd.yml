@@ -77,9 +77,7 @@ jobs:
 
       #  Lancer les tests Symfony
       - name: Run Backend Tests
-        env:
-          DATABASE_URL: mysql://root:root@127.0.0.1:3306/paribasket?charset=utf8mb4
-        run: php bin/phpunit
+        run: vendor/bin/phpunit
 
   deploy:
     runs-on: ubuntu-latest
