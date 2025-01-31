@@ -50,13 +50,13 @@ jobs:
       #  Configuration de la base de données
       - name: Setup Database
         env:
-          DATABASE_URL: mysql://root:root@127.0.0.1:3306/Paribasket_test?charset=utf8mb4
+          DATABASE_URL: mysql://root:root@127.0.0.1:3306/paribasket?charset=utf8mb4
         run: php bin/console doctrine:schema:update --force
 
       #  Lancer les tests Symfony
       - name: Run Backend Tests
         env:
-          DATABASE_URL: mysql://root:root@127.0.0.1:3306/Paribasket_test?charset=utf8mb4
+          DATABASE_URL: mysql://root:root@127.0.0.1:3306/paribasket?charset=utf8mb4
         run: php bin/phpunit
 
   deploy:
