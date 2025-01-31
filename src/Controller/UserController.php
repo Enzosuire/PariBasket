@@ -13,14 +13,14 @@ use Symfony\Component\HttpFoundation\Request;
 final class UserController extends AbstractController
 {
     #[Route('/user', name: 'app_user')]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(): Response
     {
-        // Récupérer l'utilisateur connecté
-        $user = $this->getUser();
-
-        // Passer l'utilisateur à la vue
+        $user = $this->getUser(); // Récupère l'utilisateur connecté
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur non trouvé.');
+        }
         return $this->render('user/user.html.twig', [
-            'user' => $user,  // Passer un seul utilisateur au lieu de tous
+            'user' => $user,
         ]);
     }
 
@@ -55,28 +55,28 @@ final class UserController extends AbstractController
     #[Route('/user/update-solde/{id}', name: 'user_update_solde')]
     public function updateSolde(int $id, EntityManagerInterface $entityManager, Request $request): Response
     {
-        
+
         $user = $entityManager->getRepository(User::class)->find($id);
 
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur introuvable.');
         }
 
-        
+
         $form = $this->createForm(SoldeFormType::class, $user);
 
-        
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $entityManager->flush();
 
-            
+
             return $this->redirectToRoute('app_user');
         }
 
-        
+
         return $this->render('user/update_solde.html.twig', [
             'form' => $form->createView(),
         ]);
