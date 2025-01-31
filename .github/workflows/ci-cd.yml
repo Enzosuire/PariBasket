@@ -103,3 +103,29 @@ jobs:
           fi
       - name: Show running containers
         run: docker ps -a
+
+      - name : Migrations
+        run: |
+          if [ -f docker/docker-compose.yml ]; then
+            docker-compose pull
+            docker-compose up -d
+        
+            # Vérifier si la base de données existe
+            if ! docker-compose exec db mysql -u root -p 'password' -e "SHOW DATABASES LIKE 'mydatabase';" | grep -q "mydatabase"; then
+              echo "Database does not exist. Creating the database..."
+              
+              # Créer la base de données
+              docker-compose exec app php bin/console doctrine:database:create
+        
+              # Exécuter les migrations
+              docker-compose exec app php bin/console doctrine:migrations:migrate
+        
+              # Vérifier que les migrations se sont bien appliquées (optionnel)
+              docker-compose exec db mysql -u root -p 'password' mydatabase -e "SELECT * FROM user;"
+            else
+              echo "Database already exists. Skipping database creation and migrations."
+            fi
+          else
+            echo "No docker-compose.yml found!"
+            exit 1
+          fi
