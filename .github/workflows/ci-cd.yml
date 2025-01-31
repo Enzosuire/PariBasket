@@ -94,7 +94,7 @@ jobs:
       #  Vérifier que docker-compose.yml existe avant de déployer
       - name: Deploy with Docker Compose
         run: |
-          if [ -f docker-compose.yml ]; then
+          if [ -f docker/docker-compose.yml ]; then
             docker-compose pull
             docker-compose up -d
           else
