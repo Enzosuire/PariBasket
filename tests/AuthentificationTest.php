@@ -55,7 +55,6 @@ class AuthenticationTest extends WebTestCase
         // Vérifier que la page est bien accessible
         $this->assertResponseIsSuccessful();
     }
-
     protected function tearDown(): void
     {
         $entityManager = static::getContainer()->get('doctrine')->getManager();
@@ -68,3 +67,7 @@ class AuthenticationTest extends WebTestCase
         parent::tearDown();
     }
 }
+
+}
+
+
