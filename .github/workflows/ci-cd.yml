@@ -51,17 +51,17 @@ jobs:
         run: echo "DATABASE_URL=sqlite:///%kernel.project_dir%/data/database.sqlite" >> $GITHUB_ENV
   
       - name: Copy .env.test.local (if exists)
-        run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
+        run: php -r "file_exists('../.env.test.local') || copy('../.env.test', '../.env.test.local');"
   
       - name: Remove .env.test.local (force SQLite)
-        run: rm -f .env.test.local
+        run: rm -f ../.env.test.local
   
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v3
         with:
           path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-php-${{ hashFiles('**../composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-php-
       - name: Install Dependencies
