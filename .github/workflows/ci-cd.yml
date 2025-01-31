@@ -111,7 +111,7 @@ jobs:
             docker-compose up -d
         
             # Vérifier si la base de données existe
-            if ! docker-compose exec db mysql -u root -p 'root' -e "SHOW DATABASES LIKE 'paribasket_test';" | grep -q "paribasket_test"; then
+            if ! docker-compose exec db mysql -u root -p 'password' -e "SHOW DATABASES LIKE 'mydatabase';" | grep -q "mydatabase"; then
               echo "Database does not exist. Creating the database..."
               
               # Créer la base de données
@@ -121,7 +121,7 @@ jobs:
               docker-compose exec backend php bin/console doctrine:schema:update --force
         
               # Vérifier que les migrations se sont bien appliquées (optionnel)
-              docker-compose exec db mysql -u root -p 'root' paribasket_test -e "SELECT * FROM user;"
+              docker-compose exec db mysql -u root -p 'password' mydatabase -e "SELECT * FROM user;"
             else
               echo "Database already exists. Skipping database creation and migrations."
             fi
