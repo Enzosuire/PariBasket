@@ -88,6 +88,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Install Docker Compose
+        run: sudo apt-get update && sudo apt-get install -y docker-compose
+
       #  Vérifier que docker-compose.yml existe avant de déployer
       - name: Deploy with Docker Compose
         run: |
